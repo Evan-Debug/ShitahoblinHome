@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
   <title>THE BRO BLAST 🔥</title>
   <style>
@@ -38,29 +36,160 @@
     }
   </style>
 </head>
-<body onload="startTrail(); alert('⚠️ SYSTEM ALERT: You are about to enter THE BRO BLAST. Proceed with extreme caution.');">
-  <marquee scrollamount="10"><b>🔥🔥 WELCOME TO THE BRO BLAST 🔥🔥</b></marquee>
+<marquee scrollamount="10"><b>🔥🔥 WELCOME TO THE BROBLAST AND OR SHITAHOBLIN 🔥🔥</b></marquee>
+<body onload="startTrail()">
 
-  <div class="flames">
-    <h1>💣 thebroblast.com 💣</h1>
-    <p>💀 Totally Legit Minecraft Server 💀</p>
+
+
+
+
+
+
+
+<div class="flames">
+    <h1  class="brotitle">💣 www.thebroblast.com 💣</h1>
+    <p class="smallerbrotitle ">🔥🔥 The Craziest Webpage ever!!!! 🔥🔥</p>
     <p><a href="minecraft://?addExternalServer=THEBROBLAST|thebroblast.com">[ CLICK HERE TO JOIN IN JAVA MINECRAFT ]</a></p>
   </div>
 
-  <div class="errorbox">
-    <h2>❌ SYSTEM ERROR: MULTIPLE BRO DETECTED ❌</h2>
-    <p>Unverified blast energy levels exceeding safe limits.</p>
-    <button onclick="alert('Downloading BROFIX.EXE... Virus Detected 💀')">Download Fix Tool (Windows XP Only)</button>
-  </div>
 
-  <img src="https://www.animatedimages.org/data/media/695/animated-under-construction-image-0060.gif" />
-  <img src="https://www.animatedimages.org/data/media/687/animated-skull-image-0014.gif" />
+<div style="border: 5px groove red; margin: 30px; padding: 20px; background: url('https://www.animatedimages.org/data/media/163/animated-background-image-0046.gif'); background-size: cover; color: yellow; font-size: 20px;">
+  <h2 class="normalbrotitties">🤘 My Crib Sheet 🤘</h2>
+  <p>This webpage exists for the MASSISVE Community behind Shithoblin (2023) and also the BroBlast Community (2020)</p>
+</div>
 
-  <!-- MIDI Music -->
-  <embed src="https://www.vgmusic.com/music/console/nintendo/nes/Megaman_2-Dr_Wily_Stage_1.mid" hidden="true" autostart="true" loop="true" />
+<div style="border: 5px dotted lime; margin: 30px; padding: 20px; background: black; color: magenta; animation: neonFlash 1s infinite alternate;">
+  <h2 class="evilbrotitties">💥 Me, Myself, & MySpace 💥</h2>
+  <p>BroBlast is a hardcore top-down base-builder where you hustle resources, power up defenses, and survive waves of brutal enemies. Build turrets, dig deep, and blast off into space—strategy and management keep you alive. No endgame yet, just nonstop upgrades and chaos. Ready to bro down and build up?.</p>
+</div>
 
-  <!-- Cursor Trail Script -->
-  <script>
+
+
+
+
+
+
+
+
+<!-- 🔘 Exploding BRO Button -->
+<button id="explodeBtn" style="
+  font-size: 24px;
+  font-family: 'Comic Sans MS', cursive;
+  background-color: lime;
+  color: black;
+  border: 5px dashed magenta;
+  padding: 15px 30px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  animation: pulse 1s infinite alternate;
+">
+  💥 CLICK TO DETONATE
+</button>
+<style>
+  @keyframes neonFlash {
+    0% { box-shadow: 0 0 5px magenta; }
+    100% { box-shadow: 0 0 25px lime; }
+  }
+@keyframes pulse {
+  from { transform: scale(1); box-shadow: 0 0 10px red; }
+  to { transform: scale(1.1); box-shadow: 0 0 20px yellow; }
+}
+</style>
+
+<!-- 💣 Explosion Container -->
+<div id="explosion" style="
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+"></div>
+<script>
+document.getElementById('explodeBtn').addEventListener('click', function (e) {
+  const explosion = document.getElementById('explosion');
+
+  // Get button's center position
+  const rect = e.target.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  for (let i = 0; i < 250; i++) {
+    let p = document.createElement("div");
+    p.style.position = "absolute";
+    p.style.width = "12px";
+    p.style.height = "12px";
+    p.style.background = ["red", "yellow", "orange", "white"][Math.floor(Math.random() * 4)];
+    p.style.borderRadius = "50%";
+    p.style.left = centerX + "px";
+    p.style.top = centerY + "px";
+    p.style.zIndex = 9999;
+    explosion.appendChild(p);
+
+    // Animate outward
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200 + 50;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    p.animate([
+      { transform: 'translate(0, 0)', opacity: 1 },
+      { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+    ], {
+      duration: 1000 + Math.random() * 500,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+  }
+
+  // Disable button and pulse effect after click
+  e.target.disabled = true;
+  e.target.style.animation = 'none';
+
+  // Redirect after explosion
+  setTimeout(() => {
+    window.location.href = 'dictionary1.html';
+  }, 1000);
+});
+</script>
+
+
+
+
+
+
+
+<style>
+.brotitle {
+  color: yellow;
+  text-shadow: 3px 3px 0 black;
+  font-size: 48px;
+  animation: glow 1s infinite alternate;
+}
+.evilbrotitties {
+  color: red;
+  text-shadow: 3px 3px 0 orange;
+  font-size: 35px;
+  animation: glow 1s infinite alternate;
+}
+.normalbrotitties {
+  color: cyan;
+  text-shadow: 3px 3px 0 purple;
+  font-size: 35px;
+  animation: glow 1s infinite alternate;
+}
+.smallerbrotitle {
+  color: yellow;
+  text-shadow: 3px 3px 0 black;
+  font-size: 25px;
+  animation: glow 1s infinite alternate;
+}
+</style>
+
+<script>
     var trailLength = 15;
     var path = [];
     for (let i = 0; i < trailLength; i++) {
@@ -87,11 +216,5 @@
       });
     }
   </script>
-<!-- THE SACRED GIF ZONE -->
-<div style="margin-top: 60px; padding: 30px; border: 10px double lime; background: black;">
-  <h2 style="color: red; font-size: 48px; text-shadow: 3px 3px 0 yellow;">⚠️ SUSTENANCE DETECTED ⚠️</h2>
-  <img src="https://www.animatedimages.org/data/media/298/animated-eat-and-drink-image-0211.gif" style="width: 80%; max-width: 900px; border: 5px solid magenta;" />
-</div>
 
 </body>
-</html>

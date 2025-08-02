@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>THE BRO BLAST 🔥</title>
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      text-align: center;
+      cursor: url('https://cur.cursors-4u.net/others/oth-4/oth311.cur'), auto;
+    }
+    a {
+      color: red;
+      text-decoration: blink;
+      font-size: 24px;
+    }
+    .flames {
+      border: 5px dashed magenta;
+      padding: 20px;
+      margin: 30px;
+      background-image: url('https://www.animatedimages.org/data/media/770/animated-greece-flag-image-0011.gif');
+      background-repeat: repeat;
+    }
+    .errorbox {
+      background-color: darkred;
+      color: white;
+      font-weight: bold;
+      border: 5px double yellow;
+      padding: 20px;
+      margin: 40px;
+      animation: flash 1s infinite;
+    }
+    @keyframes flash {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body onload="startTrail(); alert('⚠️ SYSTEM ALERT: You are about to enter THE BRO BLAST. Proceed with extreme caution.');">
+  <marquee scrollamount="10"><b>🔥🔥 WELCOME TO THE BRO BLAST 🔥🔥</b></marquee>
+
+  <div class="flames">
+    <h1>💣 thebroblast.com 💣</h1>
+    <p>💀 Totally Legit Minecraft Server 💀</p>
+    <p><a href="minecraft://?addExternalServer=THEBROBLAST|thebroblast.com">[ CLICK HERE TO JOIN IN JAVA MINECRAFT ]</a></p>
+  </div>
+
+  <div class="errorbox">
+    <h2>❌ SYSTEM ERROR: MULTIPLE BRO DETECTED ❌</h2>
+    <p>Unverified blast energy levels exceeding safe limits.</p>
+    <button onclick="alert('Downloading BROFIX.EXE... Virus Detected 💀')">Download Fix Tool (Windows XP Only)</button>
+  </div>
+
+  <img src="https://www.animatedimages.org/data/media/695/animated-under-construction-image-0060.gif" />
+  <img src="https://www.animatedimages.org/data/media/687/animated-skull-image-0014.gif" />
+
+  <!-- MIDI Music -->
+  <embed src="https://www.vgmusic.com/music/console/nintendo/nes/Megaman_2-Dr_Wily_Stage_1.mid" hidden="true" autostart="true" loop="true" />
+
+  <!-- Cursor Trail Script -->
+  <script>
+    var trailLength = 15;
+    var path = [];
+    for (let i = 0; i < trailLength; i++) {
+      let d = document.createElement("div");
+      d.style.width = "10px";
+      d.style.height = "10px";
+      d.style.background = "lime";
+      d.style.position = "absolute";
+      d.style.borderRadius = "50%";
+      d.style.pointerEvents = "none";
+      d.style.zIndex = "9999";
+      document.body.appendChild(d);
+      path.push(d);
+    }
+
+    function startTrail() {
+      document.addEventListener("mousemove", e => {
+        for (let i = path.length - 1; i > 0; i--) {
+          path[i].style.left = path[i - 1].style.left;
+          path[i].style.top = path[i - 1].style.top;
+        }
+        path[0].style.left = e.pageX + "px";
+        path[0].style.top = e.pageY + "px";
+      });
+    }
+  </script>
+<!-- THE SACRED GIF ZONE -->
+<div style="margin-top: 60px; padding: 30px; border: 10px double lime; background: black;">
+  <h2 style="color: red; font-size: 48px; text-shadow: 3px 3px 0 yellow;">⚠️ SUSTENANCE DETECTED ⚠️</h2>
+  <img src="https://www.animatedimages.org/data/media/298/animated-eat-and-drink-image-0211.gif" style="width: 80%; max-width: 900px; border: 5px solid magenta;" />
+</div>
+
+</body>
+</html>

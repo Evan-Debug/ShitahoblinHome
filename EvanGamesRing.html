@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <meta charset="UTF-8">
+  <title>THE WORST WEBPAGE YOULL EVER SEE</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+#ring-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  pointer-events: none;
+}
+
+.button-ring button.highlight {
+  transform: scale(1.3);
+  box-shadow: 0 0 15px magenta;
+  z-index: 1000;
+}
+
+.button-ring button {
+  position: absolute;
+  width: 120px;
+  height: 75px;
+  transform-origin: center center;
+  background: lime;
+  color: black;
+  font-family: 'Comic Sans MS', cursive;
+  border: 2px solid magenta;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+</style>
+<body>
+
+  <div id="ring-container">
+    <div class="button-ring" id="ring">
+      <!-- Buttons will be inserted here by script -->
+    </div>
+  </div>
+
+  <!-- Center image that updates based on selected button -->
+  <img id="center-image" src="images/gamering/image_1.png" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-left: -240px;
+    margin-top: -250px;
+    pointer-events: none;
+    
+    background: black;
+    object-fit: contain;
+    z-index: -200;
+  " />
+
+  <script>
+  const ring = document.getElementById("ring");
+  const buttonCount = 14;
+  const radius = 340;
+  const buttons = [];
+
+  const buttonNames = [
+    "BroBlast",
+    "Sank",
+    "Multiplayer Prototype",
+    "Battery Blaze",
+    "Battery Cold",
+    "Reforge Yugo",
+    "Contract Killing Fish",
+    "Astronet / Cosmoneer",
+    "BroBlast Ml2",
+    "Scum&Emperor",
+    "BroBlast Ml3",
+    "Coopa's Goofy Expedition",
+    "All Nighters at Evan's",
+    "Thread Ripper",
+    "Quantum Leap",
+    "Ghost Harbor",
+    "Frostbite",
+    "Thunder Road",
+    "Echo Chamber",
+    "Velvet Vortex",
+    "Nova Nexus",
+    "Phantom Core",
+    "Titan's Rise",
+    "Gravity Grid",
+    "Silent Horizon",
+    "Chaos Circuit",
+    "Turbo Twilight",
+    "Pixel Pirates",
+    "Mystic Moon",
+    "Solar Sail"
+  ];
+
+  let angle = 0;
+  let mouseX = window.innerWidth / 2;
+
+  function createButtons() {
+    for (let i = 0; i < buttonCount; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = buttonNames[i] || `Button ${i + 1}`;
+      btn.onclick = () => {
+        window.location.href = `page${i + 1}.html`;
+      };
+      ring.appendChild(btn);
+      buttons.push(btn);
+    }
+  }
+
+  function layoutButtons() {
+    const degStep = 360 / buttonCount;
+    let closestBtn = null;
+    let smallestAngleDiff = Infinity;
+    let activeIndex = 0;
+
+    for (let i = 0; i < buttonCount; i++) {
+      const btnAngle = (i * degStep + angle) % 360;
+      const rad = (btnAngle * Math.PI) / 180;
+      const x = Math.cos(rad) * radius;
+      const y = Math.sin(rad) * radius;
+
+      const btn = buttons[i];
+      btn.style.left = `${200 + x - 40}px`;
+      btn.style.top = `${200 + y - 15}px`;
+
+      const diff = Math.abs(((btnAngle - 270 + 540) % 360) - 180);
+      if (diff < smallestAngleDiff) {
+        smallestAngleDiff = diff;
+        closestBtn = btn;
+        activeIndex = i;
+      }
+
+      btn.classList.remove("highlight");
+    }
+
+    if (closestBtn) {
+      closestBtn.classList.add("highlight");
+      document.getElementById("center-image").src = `images/gamering/image_${activeIndex + 1}.png`;
+    }
+  }
+
+  document.getElementById("ring-container").addEventListener("click", () => {
+    const active = document.querySelector('.button-ring .highlight');
+    if (active) active.click();
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+  });
+
+  function animate() {
+    const screenWidth = window.innerWidth;
+    const center = screenWidth / 2;
+    const deadzone = 100; // 200px deadzone total (100px each side)
+    const edgeZone = screenWidth * 0.2;
+
+    const distFromCenter = mouseX - center;
+    const absDist = Math.abs(distFromCenter);
+    const direction = Math.sign(distFromCenter);
+
+    let strength = 0;
+
+    if (absDist > deadzone) {
+      const effectiveDist = absDist - deadzone;
+      const maxDist = edgeZone - deadzone;
+      strength = Math.min(1, effectiveDist / maxDist);
+    }
+
+    if (strength > 0.01) {
+      angle += direction * strength;
+      layoutButtons();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  createButtons();
+  layoutButtons();
+  animate();
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<body onload="startTrail()">
+<div class="flames">
+    <h1>💣 thebroblast.com 💣</h1>
+    <p>💀 Totally Legit Minecraft Server 💀</p>
+    <p><a href="minecraft://?addExternalServer=THEBROBLAST|thebroblast.com">[ CLICK HERE TO JOIN IN JAVA MINECRAFT ]</a></p>
+  </div>
+<script>
+    var trailLength = 15;
+    var path = [];
+    for (let i = 0; i < trailLength; i++) {
+      let d = document.createElement("div");
+      d.style.width = "10px";
+      d.style.height = "10px";
+      d.style.background = "lime";
+      d.style.position = "absolute";
+      d.style.borderRadius = "50%";
+      d.style.pointerEvents = "none";
+      d.style.zIndex = "9999";
+      document.body.appendChild(d);
+      path.push(d);
+    }
+
+    function startTrail() {
+      document.addEventListener("mousemove", e => {
+        for (let i = path.length - 1; i > 0; i--) {
+          path[i].style.left = path[i - 1].style.left;
+          path[i].style.top = path[i - 1].style.top;
+        }
+        path[0].style.left = e.pageX + "px";
+        path[0].style.top = e.pageY + "px";
+      });
+    }
+  </script>
+<div style="border: 5px dotted lime; margin: 30px; padding: 20px; background: black; color: magenta; animation: neonFlash 1s infinite alternate;">
+  <h2 style="font-size: 36px; color: red;">🧠 TECHNICAL STUFF 🧠</h2>
+  <p>This site runs on raw HTML, vintage MIDI, and ungodly amounts of animated GIFs. I do all my coding inside Notepad.exe and I refuse to stop.</p>
+</div>
+<style>
+  @keyframes neonFlash {
+    0% { box-shadow: 0 0 5px magenta; }
+    100% { box-shadow: 0 0 25px lime; }
+  }
+</style>
+</body>

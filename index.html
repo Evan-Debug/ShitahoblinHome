@@ -1,50 +1,9 @@
 <head>
   <title>THE BRO BLAST 🔥</title>
-  <style>
-    body {
-      background-color: black;
-      color: lime;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      text-align: center;
-      cursor: url('https://cur.cursors-4u.net/others/oth-4/oth311.cur'), auto;
-    }
-    a {
-      color: red;
-      text-decoration: blink;
-      font-size: 24px;
-    }
-    .flames {
-      border: 5px dashed magenta;
-      padding: 20px;
-      margin: 30px;
-      background-image: url('https://www.animatedimages.org/data/media/770/animated-greece-flag-image-0011.gif');
-      background-repeat: repeat;
-    }
-    .errorbox {
-      background-color: darkred;
-      color: white;
-      font-weight: bold;
-      border: 5px double yellow;
-      padding: 20px;
-      margin: 40px;
-      animation: flash 1s infinite;
-    }
-    @keyframes flash {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <marquee scrollamount="10"><b>🔥🔥 WELCOME TO THE BROBLAST AND OR SHITAHOBLIN 🔥🔥</b></marquee>
 <body onload="startTrail()">
-
-
-
-
-
-
-
 
 <div class="flames">
     <h1  class="brotitle">💣 www.thebroblast.com 💣</h1>
@@ -60,7 +19,11 @@
 
 <div style="border: 5px dotted lime; margin: 30px; padding: 20px; background: black; color: magenta; animation: neonFlash 1s infinite alternate;">
   <h2 class="evilbrotitties">💥 Me, Myself, & MySpace 💥</h2>
-  <p>BroBlast is a hardcore top-down base-builder where you hustle resources, power up defenses, and survive waves of brutal enemies. Build turrets, dig deep, and blast off into space—strategy and management keep you alive. No endgame yet, just nonstop upgrades and chaos. Ready to bro down and build up?.</p>
+  <p>
+    BroBlast is a hardcore top-down base-builder where you hustle resources, power up defenses, and survive waves of 
+    <a href="express.html" style="color: red; text-decoration: underline;">brutal</a>
+    enemies. Build turrets, dig deep, and blast off into space—strategy and management keep you alive. No endgame yet, just nonstop upgrades and chaos. Ready to bro down and build up?
+  </p>
 </div>
 
 
@@ -86,16 +49,7 @@
 ">
   💥 CLICK TO DETONATE
 </button>
-<style>
-  @keyframes neonFlash {
-    0% { box-shadow: 0 0 5px magenta; }
-    100% { box-shadow: 0 0 25px lime; }
-  }
-@keyframes pulse {
-  from { transform: scale(1); box-shadow: 0 0 10px red; }
-  to { transform: scale(1.1); box-shadow: 0 0 20px yellow; }
-}
-</style>
+
 
 <!-- 💣 Explosion Container -->
 <div id="explosion" style="
@@ -159,35 +113,13 @@ document.getElementById('explodeBtn').addEventListener('click', function (e) {
 
 
 
+<div style="text-align: center; margin: 30px; padding: 20px;">
+  <img src="gifs/underconstruction.gif" style="width: 200px;" />
+  <img src="gifs/animated-skull-image-0014.gif" style="width: 200px;" />
+</div>
 
 
 
-<style>
-.brotitle {
-  color: yellow;
-  text-shadow: 3px 3px 0 black;
-  font-size: 48px;
-  animation: glow 1s infinite alternate;
-}
-.evilbrotitties {
-  color: red;
-  text-shadow: 3px 3px 0 orange;
-  font-size: 35px;
-  animation: glow 1s infinite alternate;
-}
-.normalbrotitties {
-  color: cyan;
-  text-shadow: 3px 3px 0 purple;
-  font-size: 35px;
-  animation: glow 1s infinite alternate;
-}
-.smallerbrotitle {
-  color: yellow;
-  text-shadow: 3px 3px 0 black;
-  font-size: 25px;
-  animation: glow 1s infinite alternate;
-}
-</style>
 
 <script>
     var trailLength = 15;

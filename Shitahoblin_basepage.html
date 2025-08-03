@@ -1,0 +1,74 @@
+<head>
+  <title>THE BRO BLAST 🔥</title>
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      text-align: center;
+      cursor: url('https://cur.cursors-4u.net/others/oth-4/oth311.cur'), auto;
+    }
+    a {
+      color: red;
+      text-decoration: blink;
+      font-size: 24px;
+    }
+    .flames {
+      border: 5px dashed magenta;
+      padding: 20px;
+      margin: 30px;
+      background-image: url('https://www.animatedimages.org/data/media/770/animated-greece-flag-image-0011.gif');
+      background-repeat: repeat;
+    }
+    .errorbox {
+      background-color: darkred;
+      color: white;
+      font-weight: bold;
+      border: 5px double yellow;
+      padding: 20px;
+      margin: 40px;
+      animation: flash 1s infinite;
+    }
+    @keyframes flash {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<marquee scrollamount="10"><b>🔥🔥 WELCOME TO THE BROBLAST AND OR SHITAHOBLIN 🔥🔥</b></marquee>
+<body onload="startTrail()">
+
+
+
+
+
+
+<script>
+    var trailLength = 15;
+    var path = [];
+    for (let i = 0; i < trailLength; i++) {
+      let d = document.createElement("div");
+      d.style.width = "10px";
+      d.style.height = "10px";
+      d.style.background = "lime";
+      d.style.position = "absolute";
+      d.style.borderRadius = "50%";
+      d.style.pointerEvents = "none";
+      d.style.zIndex = "9999";
+      document.body.appendChild(d);
+      path.push(d);
+    }
+
+    function startTrail() {
+      document.addEventListener("mousemove", e => {
+        for (let i = path.length - 1; i > 0; i--) {
+          path[i].style.left = path[i - 1].style.left;
+          path[i].style.top = path[i - 1].style.top;
+        }
+        path[0].style.left = e.pageX + "px";
+        path[0].style.top = e.pageY + "px";
+      });
+    }
+  </script>
+</body>

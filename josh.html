@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Josh's Domain</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      color: white;
+      font-family: monospace;
+      transition: background 1s;
+    }
+
+    .josh-text {
+      font-size: 80px;
+      color: #eee;
+      text-shadow: 0 0 10px #000;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s ease-in-out;
+      z-index: 1;
+    }
+
+    .josh-img {
+      position: absolute;
+      width: 200px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: 2px solid white;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .horror {
+      background: black !important;
+    }
+
+    .horror .josh-text {
+      color: red;
+      text-shadow: 0 0 20px crimson;
+      font-size: 60px;
+      transform: translate(-50%, -50%) rotate(2deg);
+    }
+
+    .analog-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+      transition: opacity 2s ease-in;
+    }
+
+    .analog-visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="josh-text">Josh is Watching</div>
+  <img class="josh-img" src="images/gamering/image_13.png" alt="Josh">
+  <img class="analog-img" src="images/supjosh.jpg" alt="Analog Horror" id="horrorImage">
+  <button onclick="goCursed()">Unleash Him</button>
+
+  <audio id="glitchSound" src="https://cdn.pixabay.com/audio/2023/03/07/audio_3cd783cf6d.mp3"></audio>
+
+  <script>
+    function goCursed() {
+      const joshImg = document.querySelector('.josh-img');
+      const horrorImage = document.getElementById('horrorImage');
+      const glitchSound = document.getElementById('glitchSound');
+      const body = document.body;
+      const text = document.querySelector('.josh-text');
+
+      // Explode the Josh image
+      joshImg.style.transform = "translateX(-50%) scale(10) rotate(720deg)";
+      joshImg.style.opacity = "0";
+
+      // Horror mode
+      setTimeout(() => {
+        body.classList.add('horror');
+        horrorImage.classList.add('analog-visible');
+        text.textContent = "he was never supposed to leave";
+        glitchSound.play();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

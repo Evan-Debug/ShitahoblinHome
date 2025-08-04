@@ -58,6 +58,76 @@ body {
   font-size: 35px;
   animation: glow 1s infinite alternate;
 }
+.pulse-3d-text {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #85fdff;
+      text-shadow:
+        1px 1px 0 #86adcf,
+        2px 2px 0 #509fa1,
+        3px 3px 0 #509fa1,
+        4px 4px 0 #509fa1,
+        5px 5px 20px #509fa1;
+      animation: ballpulse 1s infinite alternate ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes ballpulse {
+      0% {
+        transform: scale(1) rotateX(0deg) rotateY(0deg);
+        text-shadow:
+        1px 1px 0 #86adcf,
+        2px 2px 0 #509fa1,
+        3px 3px 0 #509fa1,
+        4px 4px 0 #509fa1,
+        5px 5px 20px #509fa1;
+      }
+      100% {
+        transform: scale(1.1) rotateX(10deg) rotateY(10deg);
+        text-shadow:
+        1px 1px 0 #86adcf,
+        2px 2px 0 #509fa1,
+        3px 3px 0 #509fa1,
+        4px 4px 0 #509fa1,
+        5px 5px 20px #509fa1;
+      }
+    }
+
+.neonpulse-3d-text {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #ff00ff;
+      text-shadow:
+        1px 1px 0 #fff,
+        2px 2px 0 #ff00ff,
+        3px 3px 0 #ff00ff,
+        4px 4px 0 #ff00ff,
+        5px 5px 20px #ff00ff;
+      animation: diggapulse 1s infinite alternate ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes diggapulse {
+      0% {
+        transform: scale(1) rotateX(0deg) rotateY(0deg);
+        text-shadow:
+          1px 1px 0 #fff,
+          2px 2px 0 #ff00ff,
+          3px 3px 0 #ff00ff,
+          4px 4px 0 #ff00ff,
+          5px 5px 20px #ff00ff;
+      }
+      100% {
+        transform: scale(1.1) rotateX(10deg) rotateY(10deg);
+        text-shadow:
+          1px 1px 0 #fff,
+          2px 2px 0 #ff00ff,
+          3px 3px 0 #ff00ff,
+          4px 4px 0 #ff00ff,
+          6px 6px 30px #ff00ff;
+      }
+}
+
 .smallerbrotitle {
   color: yellow;
   text-shadow: 3px 3px 0 black;

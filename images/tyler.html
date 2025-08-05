@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>💥TYLER SMEG ZONE💥</title>
+  <style>
+    body {
+    background-image: url(pinkgrid.gif);
+      color: lime;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 60px;
+      text-shadow: 2px 2px magenta, -2px -2px cyan;
+      margin-top: 30px;
+      animation: flicker 1s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    .image-box {
+      display: inline-block;
+      border: 5px dashed magenta;
+      margin: 30px;
+      padding: 10px;
+      background-color: black;
+      box-shadow: 0 0 25px lime;
+      transition: transform 0.3s ease, filter 0.2s;
+    }
+
+    .image-box:hover {
+      transform: scale(1.1) rotate(2deg);
+      filter: hue-rotate(90deg);
+    }
+
+    img {
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: auto;
+      border: 3px solid lime;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 20px;
+      color: cyan;
+      text-shadow: 1px 1px black;
+    }
+
+    .ticker {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: black;
+      color: yellow;
+      font-size: 24px;
+      padding: 10px;
+      animation: ticker 10s linear infinite;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 WELCOME TO THE TYLER FAN ZONE 🔥</h1>
+
+  <div class="image-box">
+    <img src="tyler.webp" alt="Tyler">
+    <div class="caption">✨ The Original Tyler ✨</div>
+  </div>
+
+  <div class="image-box">
+    <img src="tyle_2.jpeg" alt="Tyler Again">
+    <div class="caption">👑 Tyler 2.0 - Unfiltered Glory 👑</div>
+  </div>
+
+  <div class="image-box">
+    <img src="noFilter.jpeg" alt="No Filter">
+    <div class="caption">🌀 Raw. Real. Unedited. 🌀</div>
+  </div>
+
+  <div class="image-box">
+    <img src="tommy.jpg" alt="Tommy">
+    <div class="caption">😤 Tommy in the BroZone 😤</div>
+  </div>
+
+  <div class="image-box">
+    <img src="ninja.jpeg" alt="Ninja">
+    <div class="caption">⚔️ Shadow Ninja Vibes ⚔️</div>
+  </div>
+
+  <div class="image-box">
+    <img src="smeg.jpg" alt="Smeg">
+    <div class="caption">💀 The Forbidden Smeg 💀</div>
+  </div>
+
+  <div class="ticker">🔥 Tyler is LEGEND | The Fanzone is LIVE | All Hail the Broblast Icons 🔥</div>
+
+</body>
+</html>

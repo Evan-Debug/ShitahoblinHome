@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sky Dodge</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: skyblue;
+      font-family: sans-serif;
+    }
+
+    #gameArea {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(#87CEEB, #d0f0ff);
+      overflow: hidden;
+    }
+
+    .entity {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+    }
+
+    #player img, .enemy img, .bird img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    #gameOver {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 48px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 100;
+    }
+
+    #restart {
+      margin-top: 20px;
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: lime;
+      border: none;
+    }
+@keyframes explode {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.5) rotate(15deg);
+    filter: brightness(2);
+  }
+  50% {
+    transform: scale(0.8) rotate(-20deg);
+    filter: brightness(3) sepia(1);
+  }
+  75% {
+    transform: scale(2) rotate(720deg);
+    filter: brightness(0.5) invert(1);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.exploding {
+  animation: explode 1s ease-out forwards;
+}
+  </style>
+
+
+</head>
+<body>
+  <div id="gameArea">
+    <div id="score">Score: 0</div>
+<div id="player" class="entity" style="position: relative;">
+  <img id=planeguy src="plane.gif" alt="plane">
+  <img id="planeBreak" src="planebreak.gif" alt="boom" 
+       style="position: absolute; top: -150px; left: -70px; width: 250px; height: 400px; z-index: 2; display: none;">
+</div>
+    <div id="gameOver">
+      <div id="finalScore"></div>
+      <button id="restart">Play Again</button>
+    </div>
+  </div>
+
+  <audio id="deathSound" src="loud-explosion.mp3"></audio>
+  <audio id="winSound" src="win.mp3"></audio>
+  <audio id="greekSound" src="greek.mp3"></audio>
+
+  <script>
+    const gameArea = document.getElementById('gameArea');
+    const player = document.getElementById('player');
+    const scoreDisplay = document.getElementById('score');
+    const gameOverScreen = document.getElementById('gameOver');
+    const finalScoreDisplay = document.getElementById('finalScore');
+    const restartBtn = document.getElementById('restart');
+    const deathSound = document.getElementById('deathSound');
+    const winSound = document.getElementById('winSound');
+    const greekSound = document.getElementById('greekSound');
+
+    let playerX = 100, playerY = 100;
+    let score = 0;
+    let enemies = [], birds = [];
+    let gameRunning = true;
+    const speed = 3.76;
+    const keys = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false };
+    const birdWaveState = new Map();
+
+    let enemyInterval = null;
+    let birdInterval = null;
+
+    function movePlayer() {
+      if (keys.ArrowUp) playerY -= speed;
+      if (keys.ArrowDown) playerY += speed;
+      if (keys.ArrowLeft) playerX -= speed;
+      if (keys.ArrowRight) playerX += speed;
+
+      const img = player.querySelector("img");
+      if (keys.ArrowLeft) img.style.transform = "scaleX(-1)";
+      if (keys.ArrowRight) img.style.transform = "scaleX(1)";
+
+      playerX = Math.max(0, Math.min(playerX, window.innerWidth - 80));
+      playerY = Math.max(0, Math.min(playerY, window.innerHeight - 80));
+      player.style.left = playerX + 'px';
+      player.style.top = playerY + 'px';
+    }
+
+    function randomDirection() {
+      const dirs = ['left', 'right', 'top', 'bottom'];
+      return dirs[Math.floor(Math.random() * dirs.length)];
+    }
+
+    function spawnEntity(type) {
+      const entity = document.createElement('div');
+      entity.classList.add('entity', type);
+      let dir = randomDirection();
+      let startX, startY, velX = 0, velY = 0;
+
+      if (dir === 'left') {
+        startX = -80;
+        startY = Math.random() * (window.innerHeight - 80);
+        velX = 2;
+      } else if (dir === 'right') {
+        startX = window.innerWidth;
+        startY = Math.random() * (window.innerHeight - 80);
+        velX = -2;
+      } else if (dir === 'top') {
+        startX = Math.random() * (window.innerWidth - 80);
+        startY = -80;
+        velY = 2;
+      } else {
+        startX = Math.random() * (window.innerWidth - 80);
+        startY = window.innerHeight;
+        velY = -2;
+      }
+
+      entity.style.left = startX + 'px';
+      entity.style.top = startY + 'px';
+      entity.dataset.vx = velX;
+      entity.dataset.vy = velY;
+
+      const img = document.createElement('img');
+      img.src = type === 'enemy' ? 'mangreek.gif' : 'bird.gif';
+      entity.appendChild(img);
+      gameArea.appendChild(entity);
+
+      if (type === 'enemy') enemies.push(entity);
+      else {
+        birdWaveState.set(entity, {
+          amplitude: 30 + Math.random() * 20,
+          frequency: 0.02 + Math.random() * 0.03,
+          baseY: startY
+        });
+        birds.push(entity);
+      }
+    }
+
+    function updateEntities() {
+      enemies.forEach((enemy, index) => {
+        let x = parseFloat(enemy.style.left);
+        let y = parseFloat(enemy.style.top);
+        x += parseFloat(enemy.dataset.vx);
+        y += parseFloat(enemy.dataset.vy);
+        enemy.style.left = x + 'px';
+        enemy.style.top = y + 'px';
+
+        if (x < -100 || x > window.innerWidth + 100 || y < -100 || y > window.innerHeight + 100) {
+          enemy.remove();
+          enemies.splice(index, 1);
+        } else if (checkCollision(player, enemy)) {
+          deathSound.currentTime = 0;
+          deathSound.play();
+          endGame();
+        }
+      });
+
+      birds.forEach((bird, index) => {
+        let x = parseFloat(bird.style.left);
+        let vx = parseFloat(bird.dataset.vx);
+        x += vx;
+
+        const wave = birdWaveState.get(bird);
+        let y = wave.baseY + Math.sin(x * wave.frequency) * wave.amplitude;
+
+        bird.style.left = x + 'px';
+        bird.style.top = y + 'px';
+
+        if (x < -100 || x > window.innerWidth + 100 || y < -100 || y > window.innerHeight + 100) {
+          bird.remove();
+          birdWaveState.delete(bird);
+          birds.splice(index, 1);
+        } else if (checkCollision(player, bird)) {
+          greekSound.currentTime = 0;
+          greekSound.play();
+          bird.remove();
+          birdWaveState.delete(bird);
+          birds.splice(index, 1);
+          score++;
+          onScoreChanged();
+        }
+      });
+    }
+
+    function checkCollision(a, b) {
+      const rect1 = a.getBoundingClientRect();
+      const rect2 = b.getBoundingClientRect();
+      return !(rect1.top > rect2.bottom ||
+               rect1.bottom < rect2.top ||
+               rect1.left > rect2.right ||
+               rect1.right < rect2.left);
+    }
+
+    function updateSpawners() {
+      clearInterval(enemyInterval);
+      clearInterval(birdInterval);
+	const enemyRate = Math.max(0, 1000 - score * 100);
+	const birdRate = Math.max(1000, 3000 - score * 250);
+
+      enemyInterval = setInterval(() => {
+        if (gameRunning) spawnEntity('enemy');
+      }, enemyRate);
+
+      birdInterval = setInterval(() => {
+        if (gameRunning) spawnEntity('bird');
+      }, birdRate);
+    }
+
+    function onScoreChanged() {
+      scoreDisplay.textContent = 'Score: ' + score;
+      updateSpawners();
+
+      if (score >= 10 && gameRunning) {
+        winSound.play();
+        gameRunning = false;
+        setTimeout(() => {
+          window.location.href = '288.html';
+        }, 1000);
+      }
+    }
+
+    function gameLoop() {
+      if (!gameRunning) return;
+      movePlayer();
+      updateEntities();
+      requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+
+  // Show the plane break effect
+  document.getElementById("planeBreak").style.display = "block";
+  // Show the plane break effect
+  document.getElementById("planeguy").style.display = "none";
+
+
+
+
+      gameRunning = false;
+      clearInterval(enemyInterval);
+      clearInterval(birdInterval);
+      finalScoreDisplay.textContent = "Game Over! Final Score: " + score;
+      gameOverScreen.style.display = "flex";
+
+
+
+  // Restart the plane break gif
+  const planeBreak = document.getElementById("planeBreak");
+  planeBreak.style.display = "none";
+  planeBreak.src = "";
+  planeBreak.src = "planebreak.gif";
+  planeBreak.style.display = "block";
+
+    }
+
+    function resetGame() {
+      score = 0;
+      scoreDisplay.textContent = 'Score: 0';
+      playerX = 100;
+      playerY = 100;
+      movePlayer();
+      enemies.forEach(e => e.remove());
+      birds.forEach(b => b.remove());
+      enemies = [];
+      birds = [];
+      birdWaveState.clear();
+      gameOverScreen.style.display = "none";
+      gameRunning = true;
+      updateSpawners();
+      requestAnimationFrame(gameLoop);
+  // Hide the plane break effect
+  document.getElementById("planeBreak").style.display = "none";
+  // Show the plane break effect
+  document.getElementById("planeguy").style.display = "block";
+    }
+
+    restartBtn.addEventListener('click', resetGame);
+
+    document.addEventListener('keydown', e => {
+      if (e.key in keys) keys[e.key] = true;
+    });
+    document.addEventListener('keyup', e => {
+      if (e.key in keys) keys[e.key] = false;
+    });
+
+    // Start the game
+    movePlayer();
+    updateSpawners();
+    requestAnimationFrame(gameLoop);
+  </script>
+</body>
+</html>

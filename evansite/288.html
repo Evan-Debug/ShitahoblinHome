@@ -1,0 +1,71 @@
+﻿<head>
+    <title>THE BRO BLAST 🔥</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        .Greekflames {
+            border: 5px dashed magenta;
+            padding: 20px;
+            margin: 30px;
+            background-image: url('explosion.gif');
+            background-repeat: repeat;
+            background-size: 540px 405px; /* width height */
+        }
+    </style>
+</head>
+<marquee scrollamount="10"><b>🔥🔥 WELCOME TO EVAN'S SHITASS SITE!! 🔥🔥</b></marquee>
+<body onload="startTrail()">
+
+    <div class="Greekflames">
+        <h1 class="brotitle">💣 Evil Evan's Site 💣</h1>
+        <p class="smallerbrotitle "> The Dev Society calls you.....</p>
+    </div>
+
+
+    <div style="border: 5px dotted lime; margin: 30px; padding: 20px; background: black; color: magenta; animation: neonFlash 1s infinite alternate;">
+        <h2 class="evilbrotitties">💥 why my site is awesome!!! 💥</h2>
+        <p>
+           yea idk
+        </p>
+    </div>
+
+
+    <div style="text-align: center; margin: 30px; padding: 20px;">
+        <img src="bird.gif" style="width: 200px;" />
+        <img src="astro.gif" style="width: 150px;" />
+
+        <img src="duke.svg" style="width: 150px;" />
+    </div>
+
+
+
+
+    <script>
+    var trailLength = 9;
+    var path = [];
+    for (let i = 0; i < trailLength; i++) {
+      let d = document.createElement("div");
+      d.style.width = "10px";
+      d.style.height = "10px";
+      d.style.background = "lime";
+      d.style.position = "absolute";
+      d.style.borderRadius = "50%";
+      d.style.pointerEvents = "none";
+      d.style.zIndex = "9999";
+      document.body.appendChild(d);
+      path.push(d);
+    }
+
+    function startTrail() {
+      document.addEventListener("mousemove", e => {
+        for (let i = path.length - 1; i > 0; i--) {
+          path[i].style.left = path[i - 1].style.left;
+          path[i].style.top = path[i - 1].style.top;
+        }
+        path[0].style.left = e.pageX + "px";
+        path[0].style.top = e.pageY + "px";
+      });
+    }
+    </script>
+
+</body>

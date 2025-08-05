@@ -1,27 +1,27 @@
 <head>
-  <title>PERSONAL PEOPLES 🔥</title>
-  
-  <link rel="stylesheet" href="styles.css">
+	<title>PERSONAL PEOPLES 🔥</title>
+
+	<link rel="stylesheet" href="styles.css">
 </head>
 <marquee scrollamount="10"><b>🔥🔥 YOU ARE IN PERSONAL SITES FOR SHITAHOBLIN & BROBLAST!!!!🔥🔥</b></marquee>
 <div style="border: 5px groove red; margin: 30px; padding: 20px; background: url('https://www.animatedimages.org/data/media/163/animated-background-image-0046.gif'); background-size: cover; color: yellow; font-size: 20px;">
-  <h2 style="font-size: 36px; color: cyan;">🤘 OTHER PEOPLES SITES!!!!! 🤘</h2>
-	
-  <p>take a peak below, what you may find will shock you!!!</p>
-<a href="dictionary1.html" style="color: red; text-decoration: underline;">back</a>
+	<h2 style="font-size: 36px; color: cyan;">🤘 OTHER PEOPLES SITES!!!!! 🤘</h2>
+
+	<p>take a peak below, what you may find will shock you!!!</p>
+	<a href="dictionary1.html" style="color: red; text-decoration: underline;">back</a>
 </div>
 
 <button onclick="window.location.href='gah.html'" class="peoplebuttons"
-">
-  Gah's site
+		">
+	Gah's site
 </button>
 <button onclick="window.location.href='josh.html'" class="peoplebuttons
 ">
-  EVIL JOSH SITE
+	EVIL JOSH SITE
 </button>
 <button onclick="window.location.href='annie.html'" class="peoplebuttons
 ">
-  Annie World
+	Annie World
 </button>
 
 <button onclick="window.location.href='finlaysite/finlay.html'" class="peoplebuttons
@@ -35,19 +35,157 @@
 </button>
 
 
+<button id="dodgyButton" style="
+  background: linear-gradient(45deg, red, yellow, lime);
+  color: cyan;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 5px double magenta;
+  box-shadow: 0 0 15px red, 0 0 30px lime, 0 0 45px blue;
+  text-shadow: 1px 1px 2px black;
+  cursor: pointer;
+  transform-origin: top center;
+  animation: swing 1.5s infinite ease-in-out;
+  transition: transform 0.2s;
+  position: relative;
+">
+	CLICK 4 OLI SITE 🤑
+</button>
+
+
+
 
 <div style="text-align: center; margin: 30px; padding: 20px;">
-  <img src="gifs/ninja.gif" style="width: 200px;" />
-  <img src="gifs/underconstruction.gif" style="width: 200px;" />
-  <img src="gifs/animated-skull-image-0014.gif" style="width: 200px;" />
-  <img src="gifs/eviltank.gif" style="width: 200px;" />
+	<img src="gifs/ninja.gif" style="width: 200px;" />
+	<img src="gifs/underconstruction.gif" style="width: 200px;" />
+	<img src="gifs/animated-skull-image-0014.gif" style="width: 200px;" />
+	<img src="gifs/eviltank.gif" style="width: 200px;" />
 </div>
+
+
+
 <style>
-  
+	@keyframes swing {
+		0% {
+			transform: rotate(-5deg);
+		}
 
+		50% {
+			transform: rotate(5deg);
+		}
 
+		100% {
+			transform: rotate(-5deg);
+		}
+	}
+
+	@keyframes shake {
+		0%, 100% {
+			transform: translateX(0);
+		}
+
+		20% {
+			transform: translateX(-5px);
+		}
+
+		40% {
+			transform: translateX(5px);
+		}
+
+		60% {
+			transform: translateX(-5px);
+		}
+
+		80% {
+			transform: translateX(5px);
+		}
+	}
+
+	@keyframes shatter {
+		0% {
+			transform: scale(1) rotate(0deg);
+			opacity: 1;
+			filter: blur(0px);
+		}
+
+		100% {
+			transform: scale(2) rotate(720deg);
+			opacity: 0;
+			filter: blur(10px);
+		}
+	}
 </style>
 
+<script>
+	const btn = document.getElementById("dodgyButton");
+
+	btn.addEventListener("mouseover", () => {
+		btn.style.animation = "shake 0.3s infinite";
+	});
+
+	btn.addEventListener("mouseout", () => {
+		btn.style.animation = "swing 1.5s infinite ease-in-out";
+	});
+
+	btn.addEventListener("click", () => {
+		btn.style.animation = "shatter 0.6s forwards";
+		setTimeout(() => {
+            window.location.href = "olishit/index.html"; // or another URL
+		}, 600); // wait for animation to finish
+	});
+</script>
+<style>
+	@keyframes swing {
+		0% {
+			transform: rotate(-5deg);
+		}
+
+		50% {
+			transform: rotate(5deg);
+		}
+
+		100% {
+			transform: rotate(-5deg);
+		}
+	}
+
+	@keyframes shake {
+		0%, 100% {
+			transform: translateX(0);
+		}
+
+		20% {
+			transform: translateX(-5px);
+		}
+
+		40% {
+			transform: translateX(5px);
+		}
+
+		60% {
+			transform: translateX(-5px);
+		}
+
+		80% {
+			transform: translateX(5px);
+		}
+	}
+
+	@keyframes shatter {
+		0% {
+			transform: scale(1) rotate(0deg);
+			opacity: 1;
+			filter: blur(0px);
+		}
+
+		100% {
+			transform: scale(2) rotate(720deg);
+			opacity: 0;
+			filter: blur(10px);
+		}
+	}
+</style>
 
 
 

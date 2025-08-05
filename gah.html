@@ -67,49 +67,60 @@
 
 
 <body onload="startTrail()">
-<script>
-  setTimeout(function() {
-    audio.muted = false;
-    audio.play();
-  }, 250);
-</script>
+    <script>
+        setTimeout(function () {
+            audio.muted = false;
+            audio.play();
+        }, 250);
+    </script>
 
-<div style = "display: flex; justify-content: space-between; margin: 30px; padding: 20px;">
-<div style="text-align: left; margin: 30px; padding: 20px;"> 
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px; padding: 20px;">
 
-  <img src="gifs/gahgif.gif" style="width: 350px;" />
-</div>
+        <!-- Left Image -->
+        <div style="margin: 30px; padding: 20px;">
+            <img src="gifs/gahgif.gif" style="width: 350px;" />
+            <img src="images/Gahsite_left.png" style="width: 400px;" />
+        </div>
 
-<div style="text-align: right; margin: 30px; padding: 20px;"> 
-  <img src="gifs/gahtitle.gif" style="width: 350px;" />
-</div>
-</div>
+        <!-- Center Text Column -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 500px; text-align: center;">
+            <h1 style="color: wheat;">It ain't easy being Gah</h1>
+            <h1 style="color: wheat;">From hoi4 maxing to scrobbling I have done nothing of any real note</h1>
+            <h1 style="color: wheat;">If I was alive in 70s I would be one of those cool progressive guys.</h1>
+            <h1 style="color: wheat;">I don't like gross or unfunny things.</h1>
+            <p style="color: wheat;">I'm also not racist</p>
+        </div>
+
+        <!-- Right Image -->
+        <div style="margin: 30px; padding: 20px;">
+            <img src="gifs/gahtitle.gif" style="width: 350px;" />
+            <img src="images/Gahsite_right.png" style="width: 400px;" />
+        </div>
+
+    </div>
 
 
-<div style = "display: flex; justify-content: space-between; margin: 30px; padding: 20px;">
-<div style="text-align: left; margin: 30px; padding: 20px;"> 
 
-  <img src="gifs/tank.gif" style="width: 150px;" />
-</div>
-
-<div style="text-align: right; margin: 30px; padding: 20px;"> 
-  <img src="gifs/12158469869326005663.webp" style="width: 150px;" />
-</div>
-</div>
+    <div style="display: flex; justify-content: space-between; margin: 30px; padding: 20px;">
+        <div style="text-align: left; margin: 30px; padding: 20px;">
+        </div>
+        <div style="text-align: right; margin: 30px; padding: 20px;">
+        </div>
+    </div>
 
 
 
 
-<script>
-  document.getElementById("enterBtn").addEventListener("click", () => {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("siteContent").style.display = "block";
-    document.body.style.overflow = "auto"; // Re-enable scrolling
-  });
-</script>
+    <script>
+        document.getElementById("enterBtn").addEventListener("click", () => {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("siteContent").style.display = "block";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        });
+    </script>
 </body>
 <script>
-    var trailLength = 50;
+    var trailLength = 15;
     var path = [];
     for (let i = 0; i < trailLength; i++) {
       let d = document.createElement("div");
